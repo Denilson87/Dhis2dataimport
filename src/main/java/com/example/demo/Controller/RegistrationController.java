@@ -6,21 +6,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.Model.MyAppUser;
-import com.example.demo.Model.MyAppUserRepository;
+import com.example.demo.Model.User;
+import com.example.demo.Repository.UserRepository;
 
 @RestController
 public class RegistrationController {
     
     @Autowired
-    private MyAppUserRepository myAppUserRepository;
+    private UserRepository userRepository;
     
     @Autowired
     private PasswordEncoder passwordEncoder;
     
     @PostMapping(value = "/req/signup", consumes = "application/json")
-    public MyAppUser createUser(@RequestBody MyAppUser user){
+    public User createUser(@RequestBody User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return myAppUserRepository.save(user);
+        return userRepository.save(user);
     }
 }
