@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Entity
+@Table(name = "levels")
 public class User {
     
     @Id
